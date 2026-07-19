@@ -49,6 +49,10 @@ class FoodRepositoryImpl implements FoodRepository {
     expiryDate: model.expiryDate,
     createdAt: model.createdAt,
     status: FoodStatus.fromIndex(model.statusIndex),
+    purchaseDate: model.purchaseDate,
+    quantity: model.quantity,
+    location: model.location,
+    remark: model.remark,
   );
 
   FoodItemsCompanion _toCompanion(FoodItem item) => FoodItemsCompanion(
@@ -58,5 +62,9 @@ class FoodRepositoryImpl implements FoodRepository {
     expiryDate: Value(item.expiryDate),
     createdAt: Value(item.createdAt),
     statusIndex: Value(item.status.index),
+    purchaseDate: Value(item.purchaseDate),
+    quantity: Value(item.quantity),
+    location: Value(item.location),
+    remark: Value(item.remark),
   );
 }

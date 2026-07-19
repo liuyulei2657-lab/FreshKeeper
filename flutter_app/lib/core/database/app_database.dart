@@ -12,8 +12,23 @@ part "app_database.g.dart";
 @DriftDatabase(tables: [FoodItems], daos: [FoodItemDao])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
+
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
+
+  @override
+  MigrationStrategy get migration {
+    return MigrationStrategy(
+      onUpgrade: (m, from, to) async {
+        if (from == 1) {
+          await m.addColumn(foodItems, foodItems.purchaseDate);
+          await m.addColumn(foodItems, foodItems.quantity);
+          await m.addColumn(foodItems, foodItems.location);
+          await m.addColumn(foodItems, foodItems.remark);
+        }
+      },
+    );
+  }
 }
 
 LazyDatabase _openConnection() {
