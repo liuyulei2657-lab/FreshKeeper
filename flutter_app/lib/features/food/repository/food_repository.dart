@@ -8,5 +8,6 @@ abstract class FoodRepository {
   Future<int> addFoodItem(FoodItem item);
   Future<void> updateFoodStatus(int id, FoodStatus status);
   Future<void> updateExpiryDate(int id, DateTime newDate);
+  Future<void> updateFoodItem(int id, FoodItem item);
   Future<void> deleteFoodItem(int id);
 }

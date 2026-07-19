@@ -31,6 +31,10 @@ class FoodItemDao extends DatabaseAccessor<AppDatabase> with _$FoodItemDaoMixin 
         .write(FoodItemsCompanion(expiryDate: Value(newDate)));
   }
 
+Future<void> updateFoodItem(int id, FoodItemsCompanion entry) async {
+    return (update(foodItems)..where((f) => f.id.equals(id))).write(entry);
+  }
+
   Future<void> deleteFoodItem(int id) {
     return (delete(foodItems)..where((f) => f.id.equals(id))).go();
   }

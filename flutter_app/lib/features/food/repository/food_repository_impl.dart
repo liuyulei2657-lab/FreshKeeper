@@ -36,6 +36,11 @@ class FoodRepositoryImpl implements FoodRepository {
     await _dao.updateExpiryDate(id, newDate);
   }
 
+@override
+  Future<void> updateFoodItem(int id, FoodItem item) async {
+    await _dao.updateFoodItem(id, _toCompanion(item));
+  }
+
   @override
   Future<void> deleteFoodItem(int id) async {
     await _dao.deleteFoodItem(id);
