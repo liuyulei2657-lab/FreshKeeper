@@ -3,7 +3,7 @@ import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:go_router/go_router.dart";
 import "package:flutter_app/features/inventory/pages/inventory_page.dart";
-import "package:flutter_app/features/food/pages/add/add_food_page.dart";
+import "package:flutter_app/features/food/pages/add_food_page.dart";
 import "package:flutter_app/features/food/pages/detail/detail_page.dart";
 import "package:flutter_app/features/settings/pages/settings_page.dart";
 
