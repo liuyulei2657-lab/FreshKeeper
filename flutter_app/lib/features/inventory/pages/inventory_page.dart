@@ -1,6 +1,7 @@
 library;
 import "package:flutter/material.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
+import "package:go_router/go_router.dart";
 import "package:flutter_app/features/food/providers/food_providers.dart";
 import "package:flutter_app/features/food/models/food_item.dart";
 import "package:flutter_app/features/inventory/widgets/empty_food_state.dart";
@@ -32,9 +33,13 @@ class InventoryPage extends ConsumerWidget {
           return ListView.builder(
             padding: const EdgeInsets.only(top: 8, bottom: 16),
             itemCount: activeItems.length,
-            itemBuilder: (context, index) => FoodCard(
-              item: activeItems[index],
-            ),
+            itemBuilder: (context, index) {
+              final item = activeItems[index];
+              return FoodCard(
+                item: item,
+                onTap: () => context.pushNamed("foodDetail", pathParameters: {"id": "${item.id}"}),
+              );
+            },
           );
         },
       ),
