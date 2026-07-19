@@ -1,37 +1,65 @@
 library;
 import "package:flutter/material.dart";
+import "package:flutter_app/core/utils/date_utils.dart";
+import "package:flutter_app/features/food/models/food_item.dart";
 
 class FoodCard extends StatelessWidget {
-  final String name;
-  final String emoji;
-  final int remainingDays;
+  final FoodItem item;
   final VoidCallback? onTap;
   const FoodCard({
     super.key,
-    required this.name,
-    required this.emoji,
-    required this.remainingDays,
+    required this.item,
     this.onTap,
   });
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final Color cardColor;
-    if (remainingDays <= 0) {
-      cardColor = colorScheme.errorContainer;
-    } else if (remainingDays <= 3) {
-      cardColor = colorScheme.tertiaryContainer;
+    final days = daysUntilExpiry(item.expiryDate);
+
+    Color statusColor;
+    Color? statusBg;
+    String statusText;
+    if (days <= 0) {
+      statusColor = colorScheme.error;
+      statusBg = colorScheme.errorContainer;
+      statusText = "已过期";
+    } else if (days <= 3) {
+      statusColor = Colors.orange;
+      statusBg = Colors.orange.withValues(alpha: 0.12);
+      statusText = "即将过期";
     } else {
-      cardColor = colorScheme.surfaceContainerLow;
+      statusColor = colorScheme.onSurfaceVariant;
+      statusBg = colorScheme.surfaceContainerLow;
+      statusText = "正常";
     }
+
     return Card(
-      color: cardColor,
+      color: statusBg,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
       child: ListTile(
-        leading: Text(emoji, style: const TextStyle(fontSize: 28)),
-        title: Text(name),
-        trailing: Text(
-          remainingDays <= 0 ? "已过期" : "$remainingDays 天",
-          style: Theme.of(context).textTheme.titleMedium,
+        leading: Text(item.emoji, style: const TextStyle(fontSize: 36)),
+        title: Text(
+          item.name,
+          style: const TextStyle(fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          "${item.category} · ${formatRemainingDays(days)}",
+          style: TextStyle(color: colorScheme.onSurfaceVariant),
+        ),
+        trailing: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+          decoration: BoxDecoration(
+            color: statusColor.withValues(alpha: 0.15),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Text(
+            statusText,
+            style: TextStyle(
+              color: statusColor,
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
+          ),
         ),
         onTap: onTap,
       ),
