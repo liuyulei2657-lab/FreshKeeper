@@ -25,7 +25,7 @@ class FoodCard extends StatelessWidget {
       statusText = "已过期";
     } else if (days <= 3) {
       statusColor = Colors.orange;
-      statusBg = Colors.orange.withValues(alpha: 0.12);
+      statusBg = Colors.orange.withOpacity( 0.12);
       statusText = "即将过期";
     } else {
       statusColor = colorScheme.onSurfaceVariant;
@@ -49,7 +49,7 @@ class FoodCard extends StatelessWidget {
         trailing: Container(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
           decoration: BoxDecoration(
-            color: statusColor.withValues(alpha: 0.15),
+            color: statusColor.withOpacity( 0.15),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Text(
