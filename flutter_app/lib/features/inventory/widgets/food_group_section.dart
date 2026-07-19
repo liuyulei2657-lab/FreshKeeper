@@ -20,7 +20,7 @@ class FoodGroupSection extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-          child: Text("\$icon \$title (\$count)", style: Theme.of(context).textTheme.titleMedium),
+          child: Text("$icon $title ($count)", style: Theme.of(context).textTheme.titleMedium),
         ),
         ...children,
       ],

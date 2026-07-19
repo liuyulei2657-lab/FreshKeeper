@@ -9,7 +9,7 @@ class DetailPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(),
-      body: Center(child: Text("食材详情页 - ID: \$foodId")),
+      body: Center(child: Text("食材详情页 - ID: $foodId")),
     );
   }
 }

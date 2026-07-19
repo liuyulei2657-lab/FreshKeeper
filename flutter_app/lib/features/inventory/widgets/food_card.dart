@@ -30,7 +30,7 @@ class FoodCard extends StatelessWidget {
         leading: Text(emoji, style: const TextStyle(fontSize: 28)),
         title: Text(name),
         trailing: Text(
-          remainingDays <= 0 ? "已过期" : "\$remainingDays 天",
+          remainingDays <= 0 ? "已过期" : "$remainingDays 天",
           style: Theme.of(context).textTheme.titleMedium,
         ),
         onTap: onTap,
